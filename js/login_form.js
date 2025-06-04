@@ -26,7 +26,9 @@ class LoginPopup {
         this.loginForm.addEventListener('submit', (e) => this.handleFormSubmit(e));
 
         // Ссылка регистрации
-        this.registerLink.addEventListener('click', (e) => this.handleRegisterClick(e));
+        if (this.registerLink) {
+            this.registerLink.addEventListener('click', (e) => this.handleRegisterClick(e));
+        }
 
         // Валидация в реальном времени
         this.emailInput.addEventListener('blur', () => this.validateEmail());
@@ -64,24 +66,32 @@ class LoginPopup {
         try {
             this.setLoadingState(true);
             
-            // Имитация API запроса
-            await this.simulateLogin(email, password);
+            // Use the auth manager for login
+            const result = await window.authManager.login(email, password);
             
-            this.showSuccessMessage(`Добро пожаловать! Email: ${email}`);
-            this.closePopup();
+            if (result.success) {
+                this.showSuccessMessage(`Добро пожаловать!`);
+                this.closePopup();
+                
+                // Redirect to profile or original intended page
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirectTo = urlParams.get('redirect') || '/profile.html';
+                window.location.href = redirectTo;
+            } else {
+                this.showError('Неверный email или пароль. Попробуйте снова.');
+            }
             
         } catch (error) {
-            this.showError('Ошибка входа. Проверьте данные и попробуйте снова.');
+            this.showError('Ошибка входа. Проверьте соединение и попробуйте снова.');
         } finally {
             this.setLoadingState(false);
         }
     }
 
-    // handleRegisterClick(e) {
-    //     e.preventDefault();
-    //     alert('Переход на страницу регистрации...');
-    //     // Здесь можно добавить логику перехода на страницу регистрации
-    // }
+    handleRegisterClick(e) {
+        e.preventDefault();
+        window.location.href = '/register.html';
+    }
 
     validateForm() {
         let isValid = true;
@@ -122,11 +132,6 @@ class LoginPopup {
             return false;
         }
 
-        if (password.length < 6) {
-            this.showFieldError(this.passwordInput, 'Пароль должен содержать минимум 6 символов');
-            return false;
-        }
-
         this.clearError(this.passwordInput);
         return true;
     }
@@ -163,27 +168,14 @@ class LoginPopup {
         }
     }
 
-    simulateLogin(email, password) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                // Имитация успешного входа
-                if (email && password) {
-                    resolve({ success: true });
-                } else {
-                    reject(new Error('Invalid credentials'));
-                }
-            }, 1500);
-        });
-    }
-
     showSuccessMessage(message) {
-        alert(message);
-        // Здесь можно добавить более красивое уведомление
+        // You can implement a better notification system here
+        console.log(message);
     }
 
     showError(message) {
         alert(message);
-        // Здесь можно добавить более красивое уведомление об ошибке
+        // You can implement a better error notification system here
     }
 
     resetForm() {
@@ -212,3 +204,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Глобальная функция для открытия попапа (если нужно)
     window.openLoginPopup = () => loginPopup.openPopup();
 });
+
+// Add loading animation CSS if not present
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+`;
+document.head.appendChild(style);

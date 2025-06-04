@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/pages/order_page.css">
     <link rel="stylesheet" href="css/footer.css">
-    <title>Document</title>
+    <title>Заказ - LightWeb Studio</title>
 </head>
 <body>
     <div class="wrapper">
@@ -38,7 +38,7 @@
         </header>
 
         <main class="main">
-            <div class="conatiner">
+            <div class="container">
                 <div class="main__title">Оформление Заказа</div>
                 <form class="main__form">
                     <h1 class="form__title">Шаг 1 — Заполните Основную Информацию</h1>
@@ -78,7 +78,7 @@
                         
                         <div class="form__group">
                             <label class="form__label" for="telegram">Telegram</label>
-                            <input class="form__input" type="text" id="telegram" placeholder="Поле Для Ввода">
+                            <input class="form__input" type="text" id="telegram" placeholder="@username">
                         </div>
                     </div>
                 </form>
@@ -86,56 +86,18 @@
                 <section class="rate">
                     <p class="rate-title">Шаг 2 — Выберите Тариф</p>
                     <section class="rate__section">
-                        <div class="rate__box">
-                            <div class="rate__box-title">Тариф 1</div>
-                            <div class="rate__box-bio">
-                                Описание тарифа, да долгое долгое описание, котрое
-                                <br>
-                                переходит дальше на строку
-                            </div>
-                            <ul class="rate__box-list">
-                                <li class="rate__box-item">Пункт 1</li>
-                                <li class="rate__box-item">Пункт 2</li>
-                                <li class="rate__box-item">Пункт 3</li>
-                            </ul>
-                            <div class="rate__box-bottom">
-                                <span class="rate__box-price">49999 ₽</span>
-                                <a href="#" class="rate__box-order">
-                                    <span class="rate__box-order--title">Выбрать</span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="rate__box">
-                            <div class="rate__box-title">Тариф 2</div>
-                            <div class="rate__box-bio">
-                                Описание тарифа, да долгое долгое описание, котрое
-                                <br>
-                                переходит дальше на строку
-                            </div>
-                            <ul class="rate__box-list">
-                                <li class="rate__box-item">Пункт 1</li>
-                                <li class="rate__box-item">Пункт 2</li>
-                                <li class="rate__box-item">Пункт 3</li>
-                                <li class="rate__box-item">Пункт 4</li>
-                                <li class="rate__box-item">Пункт 5</li>
-                                <li class="rate__box-item">Пункт 6</li>
-                            </ul>
-                            <div class="rate__box-bottom">
-                                <span class="rate__box-price">69999 ₽</span>
-                                <a href="#" class="rate__box-order">
-                                    <span class="rate__box-order--title">Выбрать</span>
-                                </a>
-                            </div>
+                        <!-- Tariffs will be loaded from backend -->
+                        <div style="display: flex; align-items: center; justify-content: center; width: 100%; color: #fffdfa; font-size: 18px; padding: 40px;">
+                            Загрузка тарифов...
                         </div>
                     </section>
                 </section>
 
                 <section class="confirm">
                     <div class="confirm__title">Шаг 3 — Подтвердите Создание Заказа</div>
-                    <div class="confirm__info">В течении одного рабочего дня после создания заказа с Вами свяжется наш менеджер</div>
+                    <div class="confirm__info">В течение одного рабочего дня после создания заказа с Вами свяжется наш менеджер</div>
                     <div class="confirm__action">
-                        <button class="confirm__action-btn">Создать Заказ</button>
+                        <button class="confirm__action-btn" disabled style="opacity: 0.5;">Создать Заказ</button>
                     </div>
                 </section>
             </div>
@@ -149,7 +111,7 @@
                         <a href="https://t.me/tg_nickname" class="footer__telegram">@tg_nickname</a>
                     </div>
 
-                    <a href="#" class="footer__button">Заказать сайт</a>
+                    <a href="order.html" class="footer__button">Заказать сайт</a>
 
                     <div class="footer__social">
                         <a href="#" class="footer__social-link">
@@ -167,5 +129,8 @@
             </div>
         </footer>
     </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/order.js"></script>
 </body>
 </html>
