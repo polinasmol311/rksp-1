@@ -54,8 +54,9 @@
     font-weight: 400;
 }
 
-/* --------------------------------------------- */
+/* Enhanced profile page CSS - Add to profile_page.css */
 
+/* Orders section with navigation */
 .orders {
     margin-top: 32px;
     width: 1256px;
@@ -63,26 +64,80 @@
     padding: 64px 88px;
     height: 651px;
     background: #0a0908;
+    position: relative;
 }
-.orders__title{
+
+.orders__title {
     font-weight: 800;
     font-size: 40px;
     color: #fffdfa;
     margin-bottom: 96px;
 }
+
+.orders__container {
+    position: relative;
+    width: 100%;
+}
+
 .orders__scroll {
     display: flex;
     flex-direction: row;
     gap: 24px;
-    overflow-x: auto;
+    overflow-x: hidden;
     padding-bottom: 64px;
     scroll-behavior: smooth;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    transition: transform 0.3s ease;
 }
 
 .orders__scroll::-webkit-scrollbar {
     display: none;
+}
+
+/* Navigation arrows */
+.orders__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.orders__nav--left {
+    left: -20px;
+}
+
+.orders__nav--right {
+    right: -20px;
+}
+
+.orders__nav-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #27ce22;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(39, 206, 34, 0.3);
+}
+
+.orders__nav-btn:hover {
+    background: #22b81e;
+    transform: scale(1.1);
+}
+
+.orders__nav-btn:disabled {
+    background: #666;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
 .order__card {
@@ -95,15 +150,19 @@
     background: #fffdfa;
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
 }
+
 .order__title {
     font-weight: 600;
     font-size: 32px;
 }
+
 .order__date {
     font-weight: 400;
     font-size: 16px;
 }
+
 .order__steps {
     display: flex;
     flex-direction: column;
@@ -112,21 +171,25 @@
     margin-top: 40px;
     flex-grow: 1;
 }
+
 .order__steps-item {
     display: flex;
     align-items: center;
     gap: 12px;
     margin-bottom: -10px;
 }
+
 .step__icon {
     width: 15px;
     height: 15px;
     flex-shrink: 0;
 }
+
 .step__name {
     font-weight: 700;
     font-size: 16px;
 }
+
 .step__date {
     font-weight: 400;
     font-size: 14px;
@@ -142,11 +205,13 @@
     align-items: center;    
     justify-content: center;
     transition: background-color 0.3s;
-
+    text-decoration: none;
 }
-.order__details-btn:hover{
+
+.order__details-btn:hover {
     background-color: #434343;
 }
+
 .order__details-btn--title {
     font-size: 24px;
     font-weight: 500;

@@ -62,7 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await window.authManager.register(userData);
             
             if (result.success) {
-                showSuccessPage();
+                // Registration successful, now auto-login
+                await handleSuccessfulRegistration(email, password);
             } else {
                 // Handle validation errors from Django
                 if (result.error) {
@@ -79,6 +80,27 @@ document.addEventListener('DOMContentLoaded', () => {
             setLoadingState(false);
         }
     });
+
+    // Handle successful registration - redirect to login
+    async function handleSuccessfulRegistration(email, password) {
+        // Show success message briefly
+        showSuccessMessage('Регистрация завершена! Перенаправление на страницу входа...');
+        
+        // Redirect to login page after 2 seconds
+        setTimeout(() => {
+            redirectToLogin();
+        }, 2000);
+    }
+
+    // Redirect to login with current redirect parameter
+    window.redirectToLogin = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirectParam = urlParams.get('redirect');
+        const loginUrl = redirectParam ? 
+            `/login.html?redirect=${encodeURIComponent(redirectParam)}` : 
+            '/login.html';
+        window.location.href = loginUrl;
+    };
 
     // Real-time validation
     emailInput.addEventListener('blur', () => {
@@ -191,6 +213,29 @@ document.addEventListener('DOMContentLoaded', () => {
         registerForm.insertBefore(errorDiv, submitButton);
     }
 
+    function showSuccessMessage(message) {
+        const existingMessage = registerForm.querySelector('.success-message');
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+
+        const successDiv = document.createElement('div');
+        successDiv.className = 'success-message';
+        successDiv.style.cssText = `
+            color: #27ce22;
+            text-align: center;
+            margin: 10px 0;
+            font-weight: 500;
+            background: #f8fff8;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #27ce22;
+        `;
+        successDiv.textContent = message;
+        
+        registerForm.insertBefore(successDiv, submitButton);
+    }
+
     function handleBackendErrors(errors) {
         // Handle field-specific errors from Django
         for (const [field, messages] of Object.entries(errors)) {
@@ -214,28 +259,5 @@ document.addEventListener('DOMContentLoaded', () => {
                     showGeneralError(message);
             }
         }
-    }
-
-    function showSuccessPage() {
-        // Hide the form
-        registerForm.style.display = 'none';
-        
-        // Show success message
-        const welcome = document.querySelector('.welcome');
-        const successDiv = document.createElement('div');
-        successDiv.className = 'form-success';
-        successDiv.innerHTML = `
-            <h2 style="font-size: 28px; font-weight: 700; color: #27ce22; margin-bottom: 16px;">
-                Регистрация завершена!
-            </h2>
-            <p style="font-size: 16px; color: #0a0908; margin-bottom: 20px;">
-                Теперь вы можете войти в свой аккаунт
-            </p>
-            <button class="register-form__submit-button" onclick="window.location.href='/login.html'">
-                Войти в аккаунт
-            </button>
-        `;
-        
-        welcome.parentNode.insertBefore(successDiv, welcome.nextSibling);
     }
 });
