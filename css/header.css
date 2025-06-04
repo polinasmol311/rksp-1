@@ -1,0 +1,25 @@
+.header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header {
+    font-size: 18px;
+    padding: 16px;
+    box-shadow: 0 4px 8px 0 rgba(10, 9, 8, 0.06);
+    background: #fffdfa;
+    margin-bottom: 24px;
+}
+.header__logo {
+    font-weight: 500;
+}
+.header__logo-text {
+}
+.header__nav {
+    font-weight: 400;
+}
+.header__nav-list {
+    align-items: center;
+    display: flex;
+    gap: 82px;
+}

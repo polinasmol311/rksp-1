@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/forms/login_form.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="popup popup_visible" id="popup">
+        <div class="popup__overlay"></div>
+        <div class="popup__container">
+            <button class="popup__close-button" id="closeButton" type="button">
+                <span class="popup__close-icon">×</span>
+            </button>
+            
+            <div class="welcome">
+                <h1 class="welcome__title">Добро пожаловать!</h1>
+                <p class="welcome__subtitle">Войдите в аккаунт для сохранения истории чатов</p>
+            </div>
+
+            <form class="login-form" id="loginForm">
+                <div class="login-form__field">
+                    <input 
+                        type="email" 
+                        class="login-form__input" 
+                        placeholder="Почта" 
+                        id="email"
+                        required
+                    >
+                </div>
+                <div class="login-form__field">
+                    <input 
+                        type="password" 
+                        class="login-form__input" 
+                        placeholder="Пароль" 
+                        id="password"
+                        required
+                    >
+                </div>
+                <button type="submit" class="login-form__submit-button">Войти</button>
+            </form>
+
+            <p class="register-link">
+                Или <a href="register.html" class="register-link__text" id="registerLink">зарегистрируйтесь</a> для продолжения
+            </p>
+        </div>
+    </div>
+    <script src="js/login_form.js"></script>
+</body>
+    
+</html>

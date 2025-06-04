@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'Roboto Flex';
+    font-style: normal;
+    font-weight: 100 1000;
+    src:
+        local('Roboto Flex'), 
+        url("../fonts/RobotoFlex.woff2") format('woff2'),
+        url("../fonts/RobotoFlex.woff") format('woff'),
+        url("../fonts/RobotoFlex.eot") format('eot');
+    font-display: swap;
+  }

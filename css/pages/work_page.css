@@ -1,0 +1,25 @@
+.main {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.main__bio {
+    text-align: center;
+}
+.main__bio-title {
+    font-weight: 800;
+    font-size: 40px;
+}
+.main__bio-text {
+    font-weight: 500;
+    font-size: 24px;
+}
+.main__project {
+}
+.main__project-box {
+    border-radius: 32px;
+    width: 960px;
+    height: 540px;
+    background: #d9d9d9;
+    margin-top: 24px;
+}
